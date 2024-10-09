@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 
-app.use("/books", booksRoutes)
+app.use("/api/v1", booksRoutes)
 
 app.route("/")
     .get((req, res) => {
