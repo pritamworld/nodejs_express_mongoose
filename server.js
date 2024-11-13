@@ -28,6 +28,13 @@ app.route("/")
         res.send("<h1>MogoDB + Mongoose Example</h1>")
     })
 
+app.get('/sonar', (req, res) => {
+    return res.status(200).json({ 
+      nome:  'Learn SonarQube code coverage',
+      status: true 
+    });
+});
+
 app.listen(SERVER_PORT, () =>{
     console.log(`Server running at http://localhost:${SERVER_PORT}/`)
 })
