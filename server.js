@@ -3,7 +3,7 @@ const booksRoutes = require("./routes/books")
 const mongoose = require("mongoose")
 const PASSWORD = "password"
 // const DB_CONNECTION_STRING = "mongodb://localhost:27017/books"
-const DB_CONNECTION_STRING = "mongodb+srv://sa:zXRcenjBrPmpXLx3@cluster0.7wn4nmp.mongodb.net/week06_lab?retryWrites=true&w=majority&appName=Cluster0"
+const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING || "mongodb+srv://sa:zXRcenjBrPmpXLx3@cluster0.7wn4nmp.mongodb.net/week06_lab?retryWrites=true&w=majority&appName=Cluster0"
 mongoose.connect(DB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -15,7 +15,7 @@ mongoose.connect(DB_CONNECTION_STRING, {
 
 const app = express()
 
-const SERVER_PORT = 3001
+const SERVER_PORT = process.env.SERVER_PORT || 3001
 
 app.use(express.json())
 app.use(express.urlencoded())
