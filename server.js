@@ -4,18 +4,8 @@ const mongoose = require("mongoose")
 const PASSWORD = "password"
 // const DB_CONNECTION_STRING = "mongodb://localhost:27017/books"
 const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING || "mongodb+srv://sa:zXRcenjBrPmpXLx3@cluster0.7wn4nmp.mongodb.net/week06_lab?retryWrites=true&w=majority&appName=Cluster0"
-mongoose.connect(DB_CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Connected to MongoDB")
-}).catch((err) => {
-    console.log("Error: ", err)
-})
-
-const app = express()
-
 const SERVER_PORT = process.env.SERVER_PORT || 3001
+const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -35,6 +25,14 @@ app.get('/sonar', (req, res) => {
     });
 });
 
-app.listen(SERVER_PORT, () =>{
-    console.log(`Server running at http://localhost:${SERVER_PORT}/`)
+mongoose.connect(DB_CONNECTION_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to MongoDB")
+    app.listen(SERVER_PORT, () =>{
+        console.log(`Server running at http://localhost:${SERVER_PORT}/`)
+    })
+}).catch((err) => {
+    console.log("Error: ", err)
 })
