@@ -3,7 +3,7 @@ const booksRoutes = require("./routes/books")
 
 const app = express()
 
-const SERVER_PORT = 3001
+const SERVER_PORT = process.env.PORT || 3001
 
 app.use(express.json())
 app.use(express.urlencoded())
